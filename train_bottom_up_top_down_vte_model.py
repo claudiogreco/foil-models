@@ -9,7 +9,7 @@ import numpy as np
 import tensorflow as tf
 from tensorflow.python.ops.rnn_cell_impl import DropoutWrapper
 
-from datasets import ImageReader, load_vte_dataset
+from datasets import ImageReader, load_foil_dataset
 from embeddings import glove_embeddings_initializer, load_glove
 from utils import Progbar
 from utils import batch
