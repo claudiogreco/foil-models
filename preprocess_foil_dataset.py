@@ -23,7 +23,7 @@ if __name__ == "__main__":
             writer = csv.writer(out_file, delimiter="\t")
 
             for annotation in dataset["annotations"]:
-                caption = [token.lower for token in nlp(annotation["caption"])]
+                caption = [token.lower_ for token in nlp(annotation["caption"])]
                 image = images[annotation["image_id"]]
                 label = "yes" if annotation["foil_word"] == "ORIG" else "no"
                 writer.writerow([label, " ".join(caption), image])
