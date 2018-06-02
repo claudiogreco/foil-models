@@ -22,7 +22,8 @@ if __name__ == "__main__":
         with open(args.preprocessed_foil_split_filename, mode="w") as out_file:
             writer = csv.writer(out_file, delimiter="\t")
 
-            for annotation in dataset["annotations"]:
+            for i, annotation in enumerate(dataset["annotations"]):
+                print("Processing sentence [{}/{}]".format(i, len(dataset["annotations"])))
                 caption = [token.lower_ for token in nlp(annotation["caption"])]
                 image = images[annotation["image_id"]]
                 label = "yes" if annotation["foil_word"] == "ORIG" else "no"
