@@ -17,7 +17,7 @@ def load_foil_dataset(filename, token2id, label2id):
         for row in reader:
             label = row[0].strip()
             sentence_tokens = row[1].strip().split()
-            image = row[2].strip()
+            image = row[2].strip().split("_")[2]
             labels.append(label2id[label])
             padded_sentences.append([token2id.get(token, token2id["#unk#"]) for token in sentence_tokens])
             image_names.append(image)
