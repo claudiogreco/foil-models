@@ -18,12 +18,12 @@ def load_foil_dataset(filename, token2id, label2id):
         for row in reader:
             label = row[0].strip()
             sentence_tokens = row[2].strip().split()
-            image = row[3].strip().split("#")[0]
-            hypothesis = row[5].strip()
+            image = row[3].strip()
+            sentence = row[5].strip()
             labels.append(label2id[label])
             padded_sentences.append([token2id.get(token, token2id["#unk#"]) for token in sentence_tokens])
             image_names.append(image)
-            original_sentences.append(hypothesis)
+            original_sentences.append(sentence)
 
         padded_sentences = pad_sequences(padded_sentences, padding="post", value=token2id["#pad#"], dtype=np.long)
         labels = np.array(labels)
