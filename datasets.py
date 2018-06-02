@@ -10,7 +10,6 @@ def load_foil_dataset(filename, token2id, label2id):
     labels = []
     padded_sentences = []
     image_names = []
-    original_sentences = []
 
     with open(filename) as in_file:
         reader = csv.reader(in_file, delimiter="\t")
@@ -22,12 +21,11 @@ def load_foil_dataset(filename, token2id, label2id):
             labels.append(label2id[label])
             padded_sentences.append([token2id.get(token, token2id["#unk#"]) for token in sentence_tokens])
             image_names.append(image)
-            original_sentences.append(sentence)
 
         padded_sentences = pad_sequences(padded_sentences, padding="post", value=token2id["#pad#"], dtype=np.long)
         labels = np.array(labels)
 
-    return labels, padded_sentences, image_names, original_sentences
+    return labels, padded_sentences, image_names
 
 
 class ImageReader:
